@@ -1,5 +1,5 @@
 var script = document.createElement('script');
-script.src = "./lib/createjs.js";
+script.src = "lib/createjs.js";
 document.body.appendChild(script);
 var stage ;
 script.onload = function (){
