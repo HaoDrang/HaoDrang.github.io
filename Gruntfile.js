@@ -31,7 +31,22 @@ module.exports = function(grunt){
 		watch:{
 			options:{spawn:false},
 			files:['src/*.js','src/*.css','Gruntfile.js'],	
-			tasks:['jshint','csslint','uglify']
+			tasks:['jshint','csslint','uglify','copy']
+		},
+
+		copy:{
+			main:{
+				files:[
+				{
+					expand:true,
+					cwd:'src/images',
+					src:'**',
+					flatten:false,
+					filter:'isFile',
+					dest:'build/images'
+				}
+				]
+			}
 		},
 
 		connect:{
@@ -50,11 +65,12 @@ module.exports = function(grunt){
 		}
 	});
 
+	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-csslint');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
-	grunt.registerTask('default',['csslint', 'jshint','uglify','connect','watch']);
+	grunt.registerTask('default',['csslint', 'jshint','uglify','copy','connect','watch']);
 };

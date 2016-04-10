@@ -22,9 +22,19 @@ script.onload = function (){
 	}
 	
 	var circle = new createjs.Shape();
-	circle.graphics.beginFill("blue").drawCircle(0,0,560);
+	circle.graphics.beginFill(createjs.Graphics.getRGB(200, 200, 200, 0.5)).drawCircle(0,0,560);
+
+	console.log("windowscale " + window.innerWidth);
+	var newScale = window.innerWidth/ stage.canvas.width;
+	stage.scaleX = stage.scaleY = newScale;
+	canvas.width *= newScale;
+	canvas.height *= newScale;
 
 	circle.x = circle.y = 50;
 	stage.addChild(circle);
+
+	var logo = new createjs.Bitmap('images/testimg.gif');
+
 	stage.update();
+
 };
