@@ -1,6 +1,7 @@
 var script = document.createElement('script');
 script.src = "./lib/createjs.js";
 document.body.appendChild(script);
+var stage ;
 script.onload = function (){
 	// main createjs test begin
 	console.log("main method begins...");
@@ -15,7 +16,7 @@ script.onload = function (){
 	ctx.rect(0,0,320,200);
 	ctx.stroke();
 	*/
-	var stage = new createjs.Stage(canvas);
+	stage = new createjs.Stage(canvas);
 	if(stage)
 	{
 		console.log("stage is ready ");
@@ -26,15 +27,27 @@ script.onload = function (){
 
 	console.log("windowscale " + window.innerWidth);
 	var newScale = window.innerWidth/ stage.canvas.width;
-	stage.scaleX = stage.scaleY = newScale;
-	canvas.width *= newScale;
-	canvas.height *= newScale;
+	//stage.scaleX = stage.scaleY = newScale;
+	//canvas.width *= newScale;
+	//canvas.height *= newScale;
 
 	circle.x = circle.y = 50;
-	stage.addChild(circle);
+	//stage.addChild(circle);
 
-	var logo = new createjs.Bitmap('images/testimg.gif');
+	var logo = new createjs.Bitmap("./images/testimg.gif");
+
+	console.log("logo info");
+	console.log(logo.x);
+	console.log(logo.y);
+
+	stage.addChild(logo);
 
 	stage.update();
+	createjs.Ticker.setFPS(60);
 
+            createjs.Ticker.addEventListener("tick", tick);
 };
+
+function tick(event){
+	stage.update(event);
+}
