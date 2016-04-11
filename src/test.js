@@ -94,7 +94,7 @@ function scaleCanvas(){
 	var w = 0;
 	var h = 0;
 	var canvasWidth = canvas.width;
-
+	var canvasHeight = canvas.height;
 	if (!window.innerWidth) {
 		if ((document.documentElement.clientWidth != '0')) {
 			w = document.documentElement.clientWidth;
