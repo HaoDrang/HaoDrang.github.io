@@ -82,7 +82,7 @@
             zoom: zoom,
             devicePxPerCssPx: zoom * devicePixelRatio()
         };	    
-    }
+    };
 
 	/**
 	* For safari (same as chrome)
@@ -95,7 +95,7 @@
             zoom: zoom,
             devicePxPerCssPx: zoom * devicePixelRatio()
         };	    
-    }
+    };
 	
 
     /**
