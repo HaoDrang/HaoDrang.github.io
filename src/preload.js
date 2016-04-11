@@ -23,4 +23,10 @@ Preload.prototype.initialize = function(){
 	console.log("stage is ready...");
 
 	resizeCanvas(stage);
+
+//background test
+	var background = new createjs.Shape();
+	background.graphics.beginFill(createjs.Graphics.getRGB(200, 200, 200, 0.5)).drawRect(0,0,canvas.width, canvas.height);
+	stage.addChild(background);
+	stage.update();
 };
