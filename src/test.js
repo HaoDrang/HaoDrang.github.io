@@ -61,18 +61,37 @@ script.onload = function (){
 
 	console.log("windowscaling... " + clienWidth + " : " + clientHeight);
 
-	var ratio = canvas.width / canvas.height;
-	var iWidth = window.innerWidth;
-	var iHeight = window.innerHeight;
-	var windowRatio = iWidth / iHeight;
-	if(ratio > windowRatio){
-		canvas.style.width = iWidth;
-		canvas.style.height = iHeight * ratio;
-	}else{
-		canvas.style.height = iHeight;
-		canvas.style.width = iWidth / ratio;
+	var w = 0;
+	var h = 0;
+	var canvasWidth = canvas.width;
+	var canvasHeight = canvas.height;
+	if (!window.innerWidth) {
+		if ((document.documentElement.clientWidth != '0')) {
+			w = document.documentElement.clientWidth;
+			h = document.documentElement.clientHeight;
+		} else {
+			w = document.body.clientWidth;
+			h = document.body.clientHeight;
+		}
+	} else {
+		w = window.innerWidth;
+		h = window.innerHeight;
 	}
 
+	var ratio = 1;
+	if (w / h > canvasWidth / canvasHeight) {
+		ratio = h / canvasHeight;
+		canvas.height = h;
+		canvas.width = (h * canvasWidth / canvasHeight);
+
+		
+	} else {
+		ratio = w / canvasWidth;
+		canvas.width = w;
+		canvas.height = (w * canvasHeight / canvasWidth);
+	}
+
+	stage.scaleX = stage.scaleY = ratio;
 	//var newScale = clienWidth / stage.canvas.width > clientHeight / stage.canvas.height ? clientHeight / stage.canvas.height:clienWidth / stage.canvas.width;
 	//console.log("new scale is " + newScale);
 	//stage.scaleX = stage.scaleY = newScale;
