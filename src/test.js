@@ -94,10 +94,8 @@ function scaleCanvas(){
 	var w = 0;
 	var h = 0;
 	var canvasWidth = canvas.width;
-	var canvasHeight = canvas.height;
-	w = screen.width;
-	h = screen.height;
-	/*if (!window.innerWidth) {
+
+	if (!window.innerWidth) {
 		if ((document.documentElement.clientWidth != '0')) {
 			w = document.documentElement.clientWidth;
 			h = document.documentElement.clientHeight;
@@ -108,7 +106,7 @@ function scaleCanvas(){
 	} else {
 		w = window.innerWidth;
 		h = window.innerHeight;
-	}*/
+	}
 
 	var ratio = 1;
 	if (w / h > canvasWidth / canvasHeight) {
