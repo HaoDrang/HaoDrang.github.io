@@ -124,7 +124,7 @@ function scaleCanvas(){
 	}
 
 	stage.scaleX = stage.scaleY = ratio;
-	debugText.log("data:" + [canvas.width, canvas.height, w, h]);
+	debugText.log("data:" + [canvas.width, canvas.height, w, h] + " \nzoom: " + detectZoom.zoom() + "\ndevice:" + detectZoom.device());
 	stage.update();
 }
 
