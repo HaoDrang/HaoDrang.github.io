@@ -9,6 +9,7 @@ script.onload = function (){
 	console.log("create canvas...");
 	var canvas = document.createElement('canvas');
 	document.body.appendChild(canvas);
+	canvas.id = "gameCanvas";
 	canvas.style.display = "block";
 	canvas.style.margin = "0 auto";
 	canvas.width  = 320;
@@ -55,11 +56,32 @@ script.onload = function (){
 	createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", tick);
 
-    //screen fit test
+    scaleCanvas();
+	//var newScale = clienWidth / stage.canvas.width > clientHeight / stage.canvas.height ? clientHeight / stage.canvas.height:clienWidth / stage.canvas.width;
+	//console.log("new scale is " + newScale);
+	//stage.scaleX = stage.scaleY = newScale;
+	//canvas.width 	*= newScale;
+	//canvas.height 	*= newScale;
+	window.addEventListener('resize', resizeHandler, false);
+	stage.update();
+};
+
+function tick(event){
+	stage.update(event);
+}
+
+function resizeHandler(event){
+	scaleCanvas();
+}
+
+function scaleCanvas(){
+
+	var canvas = document.getElementById("gameCanvas");
+
     var clienWidth = document.body.clientWidth;
     var clientHeight = document.body.clientHeight;
 
-	console.log("windowscaling... " + clienWidth + " : " + clientHeight);
+	// console.log("canvas... " + clienWidth + " : " + clientHeight);
 
 	var w = 0;
 	var h = 0;
@@ -92,14 +114,6 @@ script.onload = function (){
 	}
 
 	stage.scaleX = stage.scaleY = ratio;
-	//var newScale = clienWidth / stage.canvas.width > clientHeight / stage.canvas.height ? clientHeight / stage.canvas.height:clienWidth / stage.canvas.width;
-	//console.log("new scale is " + newScale);
-	//stage.scaleX = stage.scaleY = newScale;
-	//canvas.width 	*= newScale;
-	//canvas.height 	*= newScale;
-	stage.update();
-};
 
-function tick(event){
-	stage.update(event);
+	stage.update();
 }
