@@ -2,7 +2,11 @@ var script = document.createElement('script');
 script.src = "lib/createjs.js";
 document.body.appendChild(script);
 var stage ;
+var debugText;
 script.onload = function (){
+
+	initialize();
+	debugText = new DebugLabel();
 	// main createjs test begin
 	console.log("main method begins...");
 
@@ -64,6 +68,10 @@ script.onload = function (){
 	//canvas.height 	*= newScale;
 	window.addEventListener('resize', resizeHandler, false);
 	stage.update();
+
+
+	
+	stage.addChild(debugText);
 };
 
 function tick(event){
@@ -114,6 +122,18 @@ function scaleCanvas(){
 	}
 
 	stage.scaleX = stage.scaleY = ratio;
-
+	debugText.log("data:" + [canvas.width, canvas.height, w, h]);
 	stage.update();
+}
+
+function initialize(){
+
+	DebugLabel.prototype = new createjs.Text();
+	DebugLabel.prototype.log = function(str){
+		this.text = str;
+	};
+}
+
+function DebugLabel(){
+
 }
