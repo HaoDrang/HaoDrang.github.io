@@ -1,3 +1,7 @@
+
+var CANVAS_W = 490;
+var CANVAS_H = 700;
+
 var script = document.createElement('script');
 script.src = "lib/createjs.js";
 document.body.appendChild(script);
@@ -15,10 +19,13 @@ script.onload = function (){
 	document.body.appendChild(canvas);
 	canvas.id = "gameCanvas";
 	document.body.style.overflow = "hidden";
-	canvas.style.display = "block";
+	//prevent default touch , but we can add something we need
+	//maybe this can cause some touch issues, if so remember to waste this
+	document.ontouchstart = function(e){ e.preventDefault(); };
+	//canvas.style.display = "block";
 	canvas.style.margin = "0 auto";
-	canvas.width  = 360;
-	canvas.height = 520;
+	canvas.width  = 490;
+	canvas.height = 700;
 
 	stage = new createjs.Stage(canvas);
 	if(stage)
@@ -61,20 +68,12 @@ script.onload = function (){
 	createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", tick);
 
-    //scaleCanvas();
-	//var newScale = clienWidth / stage.canvas.width > clientHeight / stage.canvas.height ? clientHeight / stage.canvas.height:clienWidth / stage.canvas.width;
-	//console.log("new scale is " + newScale);
-	//stage.scaleX = stage.scaleY = newScale;
-	//canvas.width 	*= newScale;
-	//canvas.height 	*= newScale;
-	//window.addEventListener('resize', resizeHandler, false);
+	window.addEventListener('resize', resizeHandler, false);
 	stage.update();
-
 
 	stage.addChild(debugText);
 
 	scaleCanvas();
-
 };
 
 function tick(event){

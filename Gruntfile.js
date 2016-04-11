@@ -7,9 +7,19 @@ module.exports = function(grunt){
 				stripBanner:true,
 				banner : '/*! <%=pkg.name%>-<%=pkg.version%>.js <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 			},
+			/*
 			build:{
 				src:'src/*.js',
-				dest:'build/<%=pkg.name%>-<%=pkg.version%>.js.min.js'
+				dest:'build/src/<%=pkg.name%>-<%=pkg.version%>.js.min.js'
+			},
+			*/
+			boostrap:{
+				src:'src/boostrap.js',
+				dest:'build/src/boostrap.min.js'
+			},
+			preload:{
+				src:['src/preload.js','src/resizestage.js'],
+				dest:'build/src/preload.min.js'
 			}
 		},
 
@@ -44,6 +54,24 @@ module.exports = function(grunt){
 					flatten:false,
 					filter:'isFile',
 					dest:'build/images'
+				},
+				{
+					expand:true,
+					cwd:'src/dependencies',
+					src:'createjs-2015.11.26.min.js',
+					flatten:false,
+					filter:'isFile',
+					dest:'build/src/lib',
+					rename:function(dest,src){return dest + '/createjs.js';}
+				},
+				{
+					expand:true,
+					cwd:'htmls',
+					src:'build-index.html',
+					flatten:false,
+					filter:'isFile',
+					dest:'build',
+					rename:function(dest,src){return dest + '/index.html';}
 				}
 				]
 			}
