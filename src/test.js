@@ -14,10 +14,11 @@ script.onload = function (){
 	var canvas = document.createElement('canvas');
 	document.body.appendChild(canvas);
 	canvas.id = "gameCanvas";
+	document.body.style.overflow = "hidden";
 	canvas.style.display = "block";
 	canvas.style.margin = "0 auto";
-	canvas.width  = 320;
-	canvas.height = 400;
+	canvas.width  = 360;
+	canvas.height = 520;
 
 	stage = new createjs.Stage(canvas);
 	if(stage)
@@ -60,18 +61,20 @@ script.onload = function (){
 	createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", tick);
 
-    scaleCanvas();
+    //scaleCanvas();
 	//var newScale = clienWidth / stage.canvas.width > clientHeight / stage.canvas.height ? clientHeight / stage.canvas.height:clienWidth / stage.canvas.width;
 	//console.log("new scale is " + newScale);
 	//stage.scaleX = stage.scaleY = newScale;
 	//canvas.width 	*= newScale;
 	//canvas.height 	*= newScale;
-	window.addEventListener('resize', resizeHandler, false);
+	//window.addEventListener('resize', resizeHandler, false);
 	stage.update();
 
 
-	
 	stage.addChild(debugText);
+
+	scaleCanvas();
+
 };
 
 function tick(event){
@@ -90,32 +93,33 @@ function scaleCanvas(){
     var clientHeight = document.body.clientHeight;
 
 	// console.log("canvas... " + clienWidth + " : " + clientHeight);
-
+	
 	var w = 0;
 	var h = 0;
 	var canvasWidth = canvas.width;
 	var canvasHeight = canvas.height;
-	w = screen.width;
-	h = screen.height;
-/*	if (!window.innerWidth) {
+	
+	if (!window.innerWidth) {
 		if ((document.documentElement.clientWidth != '0')) {
 			w = document.documentElement.clientWidth;
 			h = document.documentElement.clientHeight;
 		} else {
 			w = document.body.clientWidth;
-			h = document.body.clientHeight;
+			h = document.body.clientHeight;	
 		}
 	} else {
 		w = window.innerWidth;
 		h = window.innerHeight;
 	}
-*/
+
+	//w = $(window).width();
+	//h = $(window).height();
+
 	var ratio = 1;
 	if (w / h > canvasWidth / canvasHeight) {
 		ratio = h / canvasHeight;
 		canvas.height = h;
 		canvas.width = (h * canvasWidth / canvasHeight);
-
 		
 	} else {
 		ratio = w / canvasWidth;
@@ -123,8 +127,9 @@ function scaleCanvas(){
 		canvas.height = (w * canvasHeight / canvasWidth);
 	}
 
+	debugText.log("w " + w + " : h " + h + " ratio:" + ratio);
 	stage.scaleX = stage.scaleY = ratio;
-	debugText.log("data:" + [canvas.width, canvas.height, w, h] + " zoom: " + detectZoom.zoom() + " device:" + detectZoom.device());
+	console.log("stage scale ready");
 	stage.update();
 }
 
