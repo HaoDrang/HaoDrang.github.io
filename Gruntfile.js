@@ -1,18 +1,23 @@
 module.exports = function(grunt){
+
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-contrib-csslint');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+
+	grunt.task.loadTasks('tasks');
+
 	grunt.initConfig({
-		pkg:grunt.file.readJSON('package.json'),
+		pkg:grunt.file.readJSON('package.json'),	
 
 		uglify:{
-			option:{
-				stripBanner:true,
-				banner : '/*! <%=pkg.name%>-<%=pkg.version%>.js <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+			options:{
+				beautify: true
+				//stripBanner:true,
+				//banner : '/*! <%=pkg.name%>-<%=pkg.version%>.js <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 			},
-			/*
-			build:{
-				src:'src/*.js',
-				dest:'build/src/<%=pkg.name%>-<%=pkg.version%>.js.min.js'
-			},
-			*/
 			boostrap:{
 				src:'src/boostrap.js',
 				dest:'build/src/boostrap.min.js'
@@ -90,15 +95,9 @@ module.exports = function(grunt){
 					}
 				}
 			}
-		}
+		}	
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-connect');
-	grunt.loadNpmTasks('grunt-contrib-csslint');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-
-	grunt.registerTask('default',['csslint', 'jshint','uglify','copy','connect','watch']);
+grunt.registerTask('release',['csslint', 'jshint','uglify','copy','connect','watch']);
+	grunt.registerTask('default',['release']);
 };
