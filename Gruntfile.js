@@ -7,8 +7,6 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
-	grunt.task.loadTasks('tasks');
-
 	grunt.initConfig({
 		pkg:grunt.file.readJSON('package.json'),	
 
