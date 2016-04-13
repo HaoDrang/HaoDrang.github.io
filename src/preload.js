@@ -8,6 +8,7 @@ Preload.prototype = new createjs.Container();
 Preload.prototype.container_initialize = Preload.prototype.initialize;
 
 Preload.prototype.initialize = function(){
+
 	this.container_initialize();
 	//create a gameCanvas
 	var canvas = document.createElement('canvas');
@@ -30,9 +31,11 @@ Preload.prototype.initialize = function(){
 	
 	resizeCanvas(stage);
 
+	var count = 0;
 	jQuery(window).resize(function(){
 		resizeCanvas(stage);
-		progressBar.updateProgress(0,100);
+		if(count)
+		progressBar.updateProgress(count,100);
 		console.log("width :" + stage.canvas.width + " , " + "height : " + stage.canvas.height);
 	});
 
