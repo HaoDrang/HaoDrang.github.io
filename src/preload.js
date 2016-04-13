@@ -28,6 +28,8 @@ Preload.prototype.initialize = function(){
 
 	this.buildUI(stage);
 
+	document.addEventListener("resize", resizeCanvas(stage));
+
 	//var loader = initLoader();
 };
 
