@@ -70,7 +70,7 @@ module.exports = function(grunt){
 				{
 					expand:true,
 					cwd:'htmls',
-					src:'build-index.html',
+					src:'build-index-locktouch.html',
 					flatten:false,
 					filter:'isFile',
 					dest:'build',
