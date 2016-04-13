@@ -69,6 +69,15 @@ module.exports = function(grunt){
 				},
 				{
 					expand:true,
+					cwd:'src/dependencies',
+					src:'jquery-2.2.3.js',
+					flatten:false,
+					filter:'isFile',
+					dest:'build/src/lib',
+					rename:function(dest,src){return dest + '/jq.js';}
+				},
+				{
+					expand:true,
 					cwd:'htmls',
 					src:'build-index-locktouch.html',
 					flatten:false,

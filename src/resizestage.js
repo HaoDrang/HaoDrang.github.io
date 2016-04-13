@@ -4,32 +4,22 @@ function resizeCanvas(stage){
 
 	var w = 0;
 	var h = 0;
-	var canvasWidth = canvas.width;
-	var canvasHeight = canvas.height;
+	var canvasWidth = CANVAS_W;
+	var canvasHeight = CANVAS_H;
 
-	if (!window.innerWidth) {
-		if ((document.documentElement.clientWidth != '0')) {
-			w = document.documentElement.clientWidth;
-			h = document.documentElement.clientHeight;
-		} else {
-			w = document.body.clientWidth;
-			h = document.body.clientHeight;	
-		}
-	} else {
-		w = window.innerWidth;
-		h = window.innerHeight;
-	}
+	w = jQuery(window).width();
+	h = jQuery(window).height();
 
 	var ratio = 1;
-	if (w / h > canvasWidth / canvasHeight) {
-		ratio = h / canvasHeight;
-		canvas.height = h;
-		canvas.width = (h * canvasWidth / canvasHeight);
-		
-	} else {
+	if (w / h < canvasWidth / canvasHeight) {
 		ratio = w / canvasWidth;
 		canvas.width = w;
-		canvas.height = (w * canvasHeight / canvasWidth);
+		canvas.height = (ratio * canvasHeight);
+		
+	} else {
+		ratio = h / canvasHeight;
+		canvas.height = h;
+		canvas.width = (ratio * canvasWidth);
 	}
 
 	rescaleStage(stage, ratio);
@@ -37,6 +27,6 @@ function resizeCanvas(stage){
 
 function rescaleStage(stage, ratio){
 	stage.scaleX = stage.scaleY = ratio;
-	console.log("stage scale ready");
+	//console.log("stage scale ready, stage scale:" + scale);
 	stage.update();
 }

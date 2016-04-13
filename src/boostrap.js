@@ -3,13 +3,16 @@
 *  load engine and create a preload panel 
 */
 var LIB_CREATEJS = "src/lib/createjs.js"; //const is not standard
-var PRELOAD = "src/preload.min.js";
+var LIB_JQUERY	 = "src/lib/jq.js";
+var PRELOAD 	 = "src/preload.min.js";
 
 (function Boostrap(){
 
 	appendScript(LIB_CREATEJS, function(){
-		appendScript(PRELOAD, function(){
-			initialize();
+		appendScript(LIB_JQUERY, function(){
+			appendScript(PRELOAD, function(){
+				initialize();
+			});
 		});
 	});
 

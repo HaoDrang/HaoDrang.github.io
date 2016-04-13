@@ -21,39 +21,52 @@ Preload.prototype.initialize = function(){
 	console.log("game canvas created...");
 
 	var stage = new createjs.Stage(canvas);
-	stage.barBackground = "0x000000";
-	console.log("stage is ready...");
 
-	resizeCanvas(stage);
+	console.log("stage is ready...");
 
 	this.buildUI(stage);
 
-	document.addEventListener("resize", resizeCanvas(stage));
+	// Size the canvas to fill the browser viewport.
+	
+	resizeCanvas(stage);
+
+	jQuery(window).resize(function(){
+		resizeCanvas(stage);
+		progressBar.updateProgress(0,100);
+		console.log("width :" + stage.canvas.width + " , " + "height : " + stage.canvas.height);
+	});
 
 	//var loader = initLoader();
 };
 
+var drawNet = function(stage){
+	for (var i = 0; i < 10; i++) {
+		for(var k = 0; k < 10; k++){
+			var dot = new createjs.Shape();
+			dot.graphics.beginFill(createjs.Graphics.getRGB(200, 100, 100, 1)).drawCircle(i * 100,k * 100,5);
+			stage.addChild(dot);}
+	}
+};
+
 Preload.prototype.buildUI = function(stage) {
-		var w = CANVAS_W - 10;
+
+		var w = CANVAS_W - 40;
 		var h = 30;
 		var x = (CANVAS_W - w) / 2;
 		var y = (CANVAS_H - h) / 2;
 
-		progressBar = new PreloadProgressBar(x,y / 2,w,h,5,2,2,80,200,80,1);
+		progressBar = new PreloadProgressBar(x,y,w,h,5,2,2,80,200,80,1);
+		progressBar.scaleX = progressBar.scaleY = stage.scaleX;
 		stage.addChild(progressBar);
 		progressBar.updateProgress(0,100);
 		stage.update();
 		console.log("x " + progressBar.x + " y:" + progressBar.y);
-		console.log("stage " + stage.canvas.height + "  " + stage.y);
-		//progressBar.graphics.beginFill(createjs.Graphics.getRGB(125, 125, 125, 1)).drawRoundRect(x,y,w,h,5,5,5,5);
-		//progressBar.graphics.beginFill(createjs.Graphics.getRGB(255, 255, 255, 1)).drawRoundRect(x + 3,y + 2,w - 6,h - 4,5,5,5,5);
-		//progressBar.graphics.beginFill(createjs.Graphics.getRGB(0, 0, 0, 1)).drawRoundRect(x + 3,y + 2,(w - 6) / 2,h - 4,5,5,5,5);
-
+		console.log("stage " + stage.canvas.width + "  " + stage.canvas.height);
 };
 
-function PreloadProgressBar(x,y,w,h,radius,ox,oy,r,g,b,alpha){
-	this.x = x;
-	this.y = y;
+function PreloadProgressBar(ix,iy,w,h,radius,ox,oy,r,g,b,alpha){
+	this.posX = ix;
+	this.poxY = iy;
 	this.w = w;
 	this.h = h;
 	this.radius 	 = radius;
@@ -61,21 +74,24 @@ function PreloadProgressBar(x,y,w,h,radius,ox,oy,r,g,b,alpha){
 	this.offsety 	 = oy;
 	this.color 		 = createjs.Graphics.getRGB(r, g, b, alpha);
 	this.strokecolor = createjs.Graphics.getRGB(0, 0, 0, 1);
-	this.bgcolor = createjs.Graphics.getRGB(200,200,200,1);
+	this.bgcolor 	 = createjs.Graphics.getRGB(200,200,200,1);
 }
 PreloadProgressBar.prototype = new createjs.Shape();
 PreloadProgressBar.prototype.updateProgress = function(current, full) {
 	//stroke
-	this.graphics.beginFill(this.strokecolor).drawRoundRect(this.x,this.y,this.w,this.h,
+	this.graphics.beginFill(this.strokecolor).drawRoundRect(this.posX,this.poxY,this.w,this.h,
 		this.radius,this.radius,this.radius,this.radius);
 	//background
-	this.graphics.beginFill(this.bgcolor).drawRoundRect(this.x + this.offsetx,this.y + this.offsety,
+	this.graphics.beginFill(this.bgcolor).drawRoundRect(this.posX + this.offsetx,this.poxY + this.offsety,
 		this.w - this.offsetx * 2, this.h - this.offsety * 2,
 		this.radius,this.radius,this.radius,this.radius);
 	//progressBar
-	this.graphics.beginFill(this.color).drawRoundRect(this.x + this.offsetx,this.y + this.offsety,
+	this.graphics.beginFill(this.color).drawRoundRect(this.posX + this.offsetx,this.poxY + this.offsety,
 		this.w - this.offsetx * 2, this.h - this.offsety * 2,
 		this.radius,this.radius,this.radius,this.radius);
 
 	this.graphics.endFill();
+
+	console.log("ProgressBar pos X:" + this.x + ", Y:" + this.y);
+	console.log();
 };
