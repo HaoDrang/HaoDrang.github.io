@@ -1,0 +1,48 @@
+//*******************************************************************
+//example json
+//
+{
+	"example1":{
+		"images":[
+		//loader.getResult("loadedImage"),
+		"path/of/example/url.png"
+		]
+	},
+
+	"example2":{
+		//width & height are required and specify the dimensions of the frames
+		//regX & regY indicate the registration point or "origin" of the frames
+		//spacing indicate the spacing between frames
+		//margin specify the margin around the image(s)
+		//count allows you to specify the total number of frames in the spritesheet; 
+		//if omitted, this will be calculated based on the dimensions of the source images 
+		//and the frames. Frames will be assigned indexes based on their position in the source 
+		//images (left to right, top to bottom).
+		"frames":{"width":64, "height":64, "count":20, "regX": 32, "regY":64, "spacing":0, "margin":0},
+	},
+
+	"example3":{
+		"frames" : [
+			//x, y, width, height, imageIndex*, regX*, regY*
+			[64, 0, 96, 64],
+    		[0, 0, 64, 64, 1, 32, 32]
+		]
+	},
+
+	"example4":{
+		"animations":{
+			"framerate":12,
+			"stay":2,// 2 is the index of frame
+			"run":[0,8],
+			"jump":[9.2,"run",3],
+			"walk":{
+				"frames":[1,2,3,3,2,1],
+			},
+			"shoot":{
+				"frames":[1,4,5,6],
+				"next":"walk",
+				"speed":0.5
+			}
+		}
+	}
+}

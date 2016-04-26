@@ -1,0 +1,17 @@
+{
+ 	"path": "images/",
+    "manifest": [
+
+        "test01.png",
+        "test04.png",
+        "test05.png",
+        "test06.png",
+        "test07.png",
+        "test08.png",
+        {"src": "game_ui.png", "id" :"game_ui"},
+        {"src": "path1/test02.png", "id":"t02"},
+        {"src": "loginbg.png", "id":"loginbg"},
+        {"src": "../properties/game_info.json", "type":"json", "id":"gameinfo"},
+        {"src": "../loadmanifest/submanifest.json", "type":"json", "callback":"jsonCallback"}
+    ]
+}

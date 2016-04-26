@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
+<!--html manifest="cache.manifest"-->
 <head>
 	
 </head>
 <body>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-capable" content="yes" />
+<meta name="x5-fullscreen" content="true"><!-- wechat full screen -->
+<meta name="browsermode" content="application"><!-- UC application mode-->
+<meta name="x5-page-mode" content="app"><!-- wechat app mode -->
 <script src = 'src/boostrap.min.js'></script>
 <style type="text/css">
 		{
@@ -30,6 +34,6 @@
 			-ms-touch-action: none;
 		}
 </style>
-<canvas id="gameCanvas" width="540", height="960"></canvas>
+<canvas id="gameCanvas" width="540" height="960"></canvas>
 </body>
 </html>

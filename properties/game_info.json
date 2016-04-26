@@ -1,0 +1,27 @@
+{
+	"ui_info":{
+		"ui_spritesheet":{
+			"ui_id":{
+				"btn_easy_normal":0,
+				"btn_medium_normal":1,
+				"btn_hard_normal":2,
+
+				"btn_exit_normal":3,
+				"btn_options_normal":4,
+				"btn_newgame_normal":5,
+				"btn_newgame_clicked":6
+			},
+			"frames" : [
+			
+				[365,1030,155,32],
+				[207,1030,155,32],
+				[49, 1030,155,32],
+
+	    		[138,985,155,32], 
+	    		[296, 950,155,32],
+	    		[207,1066,155,32],
+	    		[207,1101, 155, 32]	
+			]
+		}
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"path":"src/",
+	"manifest":[
+		{"src":"src/game.min.js", "id":"gamejs"}
+	]
+}
