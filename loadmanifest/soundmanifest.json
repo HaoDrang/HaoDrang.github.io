@@ -1,0 +1,7 @@
+{
+ 	"path": "sounds/",
+    "manifest": [
+        { "id":"default_bgm", "src":"defaultbgm.mp3"},
+        { "id":"click_sound", "src":"clicksound.wav"}
+    ]
+}

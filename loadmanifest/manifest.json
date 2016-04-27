@@ -1,0 +1,8 @@
+{
+    "path":"loadmanifest/",
+    "manifest": [
+        {"src": "imgmanifest.json", "type":"manifest"},
+        {"src": "soundmanifest.json", "type":"manifest"},
+        {"src": "jsonmanifest.json", "type":"manifest"}
+    ]
+}

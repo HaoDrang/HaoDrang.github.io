@@ -1,0 +1,6 @@
+{
+	"path": "properties/",
+	"manifest": [
+        {"src": "game_info.json", "type":"json", "id":"gameinfo"}
+    ]
+}
